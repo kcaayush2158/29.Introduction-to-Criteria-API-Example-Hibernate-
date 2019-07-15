@@ -13,8 +13,9 @@ public class Main {
         try (Session session = HibernateUtil.sessionFactory().openSession()){
             session.beginTransaction();
 
-            Query query = session.createQuery(" from UserDetails where id>3");
-
+            Query query = session.createQuery(" from UserDetails");
+            query.setMaxResults(2); //Set the maximum result
+            query.setFirstResult(2); //  prints  from the result 3
 
             List<UserDetails>users = (List<UserDetails>) query.list();
 
