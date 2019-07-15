@@ -13,10 +13,13 @@ public class Main {
         try (Session session = HibernateUtil.sessionFactory().openSession()){
             session.beginTransaction();
 
-            Query query = session.createQuery(" from UserDetails");
-            query.setMaxResults(2); //Set the maximum result
-            query.setFirstResult(2); //  prints  from the result 3
+            //By using named query (HQL)
+            Query query = session.getNamedQuery("UserDetails.byId");
+            query.setParameter("userId",1);//setting the value of userId in the named Parameters
 
+            //By using named native query (SQL)
+            Query query1 = session.getNamedNativeQuery("UserDetails.byName");
+            query.setString(0,"User23")
             List<UserDetails>users = (List<UserDetails>) query.list();
 
             session.getTransaction().commit();
