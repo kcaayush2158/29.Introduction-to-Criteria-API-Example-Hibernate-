@@ -5,7 +5,7 @@ import javax.persistence.*;
 
 @Entity
 @NamedQuery(name="UserDetails.byId",query="from UserDetails where id =:userId")
-@NamedNativeQuery(name="UserDetails.byName",query="SELECT  * FROM userdetails WHERE username=?",resultClass = UserDetails.class)
+@NamedNativeQuery(name="UserDetails.byName",query="SELECT  * FROM userdetails WHERE username = :userName",resultClass = UserDetails.class)
 
 public class UserDetails {
     @Id
